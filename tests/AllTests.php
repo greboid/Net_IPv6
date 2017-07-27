@@ -569,6 +569,10 @@ class NetIPv6Test extends PHPUnit_Framework_TestCase {
 
     }
 
+    /**
+     * related to bug #21140
+     * @author phildavis <phil@jankaritech.com>
+     */
     public function testSplitV64Normal() {
 
         $testip = "abcd:2:3:4:5:6:13.1.68.3";
@@ -580,6 +584,10 @@ class NetIPv6Test extends PHPUnit_Framework_TestCase {
     
     }
 
+    /**
+     * related to bug #21140
+     * @author phildavis <phil@jankaritech.com>
+     */
     public function testSplitV64Uncompress() {
 
         $testip = "abcd::6:13.1.68.3";
@@ -591,6 +599,10 @@ class NetIPv6Test extends PHPUnit_Framework_TestCase {
 
     }
 
+    /**
+     * related to bug #21140
+     * @author phildavis <phil@jankaritech.com>
+     */
     public function testSplitV64UncompressDoubleColon() {
 
         $testip = "::13.1.68.3";
@@ -601,7 +613,11 @@ class NetIPv6Test extends PHPUnit_Framework_TestCase {
         $this->assertEquals( "13.1.68.3", $result[1]);
 
     }
-
+    
+    /**
+     * related to bug #21140
+     * @author phildavis <phil@jankaritech.com>
+     */
     public function testSplitV64UncompressDoubleColonAtEnd() {
 
         $testip = "abcd:2::13.1.68.3";
@@ -613,6 +629,10 @@ class NetIPv6Test extends PHPUnit_Framework_TestCase {
 
     }
 
+    /**
+     * related to bug #21140
+     * @author phildavis <phil@jankaritech.com>
+     */
     public function testSplitV64UncompressDoubleColonAtStart() {
 
         $testip = "::ffff:13.1.68.3";
@@ -624,6 +644,10 @@ class NetIPv6Test extends PHPUnit_Framework_TestCase {
 
     }
 
+    /**
+     * related to bug #21140
+     * @author phildavis <phil@jankaritech.com>
+     */
     public function testSplitV64DoNotUncompress() {
 
         $testip = "abcd::6:13.1.68.3";
@@ -635,6 +659,10 @@ class NetIPv6Test extends PHPUnit_Framework_TestCase {
 
     }
 
+    /**
+     * related to bug #21140
+     * @author phildavis <phil@jankaritech.com>
+     */
     public function testSplitV64DoNotUncompressDoubleColon() {
 
         $testip = "::13.1.68.3";
@@ -646,6 +674,10 @@ class NetIPv6Test extends PHPUnit_Framework_TestCase {
 
     }
 
+    /**
+     * related to bug #21140
+     * @author phildavis <phil@jankaritech.com>
+     */
     public function testSplitV64DoNotUncompressDoubleColonAtEnd() {
 
         $testip = "abcd:2::13.1.68.3";
@@ -657,6 +689,10 @@ class NetIPv6Test extends PHPUnit_Framework_TestCase {
 
     }
 
+    /**
+     * related to bug #21140
+     * @author phildavis <phil@jankaritech.com>
+     */
     public function testSplitV64DoNotUncompressDoubleColonAtStart() {
 
         $testip = "::ffff:13.1.68.3";
@@ -668,6 +704,10 @@ class NetIPv6Test extends PHPUnit_Framework_TestCase {
 
     }
 
+    /**
+     * related to bug #21140
+     * @author phildavis <phil@jankaritech.com>
+     */
     public function testSplitV64IPv4Only() {
 
         $testip = "13.1.68.3";
@@ -679,6 +719,10 @@ class NetIPv6Test extends PHPUnit_Framework_TestCase {
 
     }
 
+    /**
+     * related to bug #21140
+     * @author phildavis <phil@jankaritech.com>
+     */
     public function testSplitV64IPv6Only() {
 
         $testip = "a:b:c:d:e:f:1:2";

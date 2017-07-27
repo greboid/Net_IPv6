@@ -824,6 +824,9 @@ class Net_IPv6
      *                [1] the IPv4 part (hex format)
      * @access public
      * @static
+     *
+     * @author    Alexander Merz <alexander.merz@web.de>
+.... * @author phildavis <phil@jankaritech.com>
      */
     public static function SplitV64($ip, $uncompress = true)
     {
