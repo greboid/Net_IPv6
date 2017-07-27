@@ -701,6 +701,9 @@ class Net_IPv6
             $prefix = '/'.$prefix;
 
         }
+        
+        $split = Net_IPv6::splitV64($ip);
+        $ip = $split[0];
 
         $netmask = Net_IPv6::getNetmaskSpec($ip);
         $ip      = Net_IPv6::removeNetmaskSpec($ip);
@@ -737,6 +740,10 @@ class Net_IPv6
         if ($cip != "::") {
             $cip = preg_replace('/((^:)|(:$))/', '', $cip);
             $cip = preg_replace('/((^:)|(:$))/', '::', $cip);
+        }
+
+        if ('' != $split[1]) { // add ipv4 part is available
+            $cip = $cip.$split[1];
         }
         
         if ('' != $netmask) {

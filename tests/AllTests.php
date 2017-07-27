@@ -188,6 +188,27 @@ class NetIPv6Test extends PHPUnit_Framework_TestCase {
     }
 
     /**
+     * this testcase handles Bug 13006
+     * compressing an IPv6 address with mixed IPv4 address gave wrong result.
+     *
+     */
+    public function testBug13006_1() {
+        $testip = "2001:690:22c0:201::193.136.195.195";
+        $expected = "2001:690:22c0:201::193.136.195.195";
+        $is = $this->ip->compress($testip);
+        
+        $this->assertEquals($expected, $is);
+    }
+
+    public function testBug13006_2() {
+        $testip = "2001:690:22c0:201::193.136.195.195";
+        $expected = "2001:690:22c0:201::193.136.195.195";
+        $is = $this->ip->compress($this->ip->uncompress($testip));
+        
+        $this->assertEquals($expected, $is);
+    }
+
+    /**
      * this testcase handles Bug 19334
      * CheckIpv6 returned true because of an invalid check
      * non-valid chars
