@@ -27,7 +27,9 @@
  </stability>
  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
  <notes>
-#21046 checkIPv6 wrongly validates IPv6 IPs with leading and/or trailing : </notes>
+  fix #13006 failed compressing ipv6 with ip4 part
+  fix #21140 splitV64 for double-colon do not uncompress case
+</notes>
  <contents>
   <dir baseinstalldir="/" name="/">
    <file baseinstalldir="/" md5sum="b4b06fc4c4b4e450078c1362ff243a5d" name="Net/IPv6.php" role="php" />
@@ -59,8 +61,7 @@
    </stability>
    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
    <notes>
-    fix #13006 failed compressing ipv6 with ip4 part
-    fix #21140 splitV64 for double-colon do not uncompress case
+    #21046 checkIPv6 wrongly validates IPv6 IPs with leading and/or trailing :
    </notes>
   </release>
   <release>
