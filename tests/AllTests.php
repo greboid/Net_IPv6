@@ -734,4 +734,14 @@ class NetIPv6Test extends PHPUnit_Framework_TestCase {
 
     }
 
+    /**
+     * related to bug #23756
+     * @author landy <landy2005@gmail.com>
+     */
+    public function testCompressedNetmasksIncorrectlyDetectedInIsInNetmask() {
+        $netmask = '::ffff/96';
+        $testip = '0:0:0:0:0:ffff:c000:22f';
+        $this->assertTrue(Net_IPv6::isInNetmask($testip, $netmask));
+    }
+
 }

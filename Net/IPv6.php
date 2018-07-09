@@ -361,8 +361,15 @@ class Net_IPv6
 
                 if (2 == count($elements)) {
 
-                     $netmask = $elements[0];
-                     $bits    = $elements[1];
+                    $netmask = $elements[0];
+                    $bits = $elements[1];
+                    // Correctly uncompress netmasks with prefixes, ie ::FFFF/96 == 0:0:0:0:0:FFFF:0:0/96
+                    // Need only for xxx::yyy/zz and ::yyy/zz
+                    if (preg_match('/^(\:\:[a-f\d]{1,4}|[a-f\d]{1,4}.*\:\:.*[a-f\d]{1,4})$/', $netmask) &&
+                        !preg_match('/\:0+$/', $netmask)) {
+                        $c_bits = intval((128 - $bits) / 16);
+                        $netmask .= str_repeat(':0', $c_bits);
+                    }
 
                 }
 
@@ -537,7 +544,7 @@ class Net_IPv6
 
         } else {
 
-            $ip     = Net_IPv6::removePrefixLength($ip);
+            $ip     = Net_IPv6::removeNetmaskSpec($ip);
             $prefix = '/'.$prefix;
 
         }
@@ -697,7 +704,7 @@ class Net_IPv6
 
         } else {
 
-            $ip     = Net_IPv6::removePrefixLength($ip);
+            $ip     = Net_IPv6::removeNetmaskSpec($ip);
             $prefix = '/'.$prefix;
 
         }
@@ -1052,7 +1059,16 @@ class Net_IPv6
         $binstr = '';
 
         $ip = Net_IPv6::removeNetmaskSpec($ip);
-        $ip = Net_IPv6::Uncompress($ip);
+
+        // Correctly convert IPv4 mapped addresses (::ffff:x.x.x.x)
+        list(, $ipv4) = Net_IPv6::SplitV64($ip, FALSE);
+        if (strlen($ipv4)) {
+            $ipv4map = explode('.', $ipv4, 4);
+            $ipv4replace = dechex($ipv4map[0] * 256 + $ipv4map[1]) . ':' . dechex($ipv4map[2] * 256 + $ipv4map[3]);
+            $ip = str_replace($ipv4, $ipv4replace, $ip);
+        }
+
+        $ip = Net_IPv6::uncompress($ip);
 
         $parts = explode(':', $ip);
 
