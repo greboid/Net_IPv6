@@ -4,7 +4,7 @@
             "email": "alexmerz@php.net",
             "name": "Alexander Merz",
             "role": "Lead"
-        },
+        }
     ],
     "autoload": {
         "psr-0": {
@@ -16,11 +16,7 @@
         "./"
     ],
     "license": "BSD-2-Clause",
-    "name": "pear/net_ipv6",
-    "support": {
-        "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=Net_IPv6",
-        "source": "https://github.com/alexmerz/Net_IPv6"
-    },
+    "name": "greboid/net_ipv6",
     "type": "library",
     "require": {
         "pear/pear_exception": "*"
